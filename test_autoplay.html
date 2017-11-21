@@ -1,0 +1,80 @@
+<html lang="en">
+    <head>
+        <meta charset=utf-8/>
+    </head>
+    <body>
+        <div id='player'>
+            <video id='hlsplayer' loop controls autoplay="true">
+            </video>
+        </div>
+
+        <p>Apple 4x3 basic stream<span>
+        <button onclick="playTheUrl(this,'https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8')" type="button">Test</button>
+
+        <p>Apple 16x9 basic stream<span>
+        <button onclick="playTheUrl(this,'https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8')" type="button">Test</button>
+
+        <p>Apple master playlist advanced (TS)<span>
+        <button onclick="playTheUrl(this,'https://tungsten.aaplimg.com/VOD/bipbop_adv_example_v2/master.m3u8')" type="button">Test</button>
+
+        <p>Apple master playlist advanced (fMP4)<span>
+        <button onclick="playTheUrl(this,'https://tungsten.aaplimg.com/VOD/bipbop_adv_fmp4_example/master.m3u8')" type="button">Test</button>
+
+        <p>Apple TS media playlist<span>
+        <button onclick="playTheUrl(this,'https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear1/prog_index.m3u8')" type="button">Test</button>
+
+        <p>Apple AAC media playlist<span>
+        <button onclick="playTheUrl(this,'https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear0/prog_index.m3u8')" type="button">Test</button>
+
+        <p> Apple ID3 metadata<span>
+        <button onclick="playTheUrl(this,'http://devimages.apple.com/samplecode/adDemo/ad.m3u8')" type="button">Test</button>
+
+         <p> AES encrypted <span>
+        <button onclick="playTheUrl(this,'http://playertest.longtailvideo.com/adaptive/oceans_aes/oceans_aes.m3u8')" type="button">Test</button>
+
+         <p> IPTV Euronews (UK) (English)<span>
+        <button onclick="playTheUrl(this,'http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8')" type="button">Test</button>
+
+        <p>URL without m3u8<span>
+        <button onclick="playTheUrl(this,'http://pl.youku.com/playlist/m3u8?ctype=12&ep=dCaXGECKUs4G4iDagT8bZCu0cX4GXJZ0rEjP/LYHAMZuLerQmzbQwQ==%0A&ev=1&keyframe=1&oip=1899608454&sid=64329740673591237f599&token=2816&type=hd3&vid=XNjgzMTU0MzU2')" type="button">Test</button>
+
+        <p> input url <span>
+        <input type = "text"
+               value = "https://walterebert.com/playground/video/hls/sintel-trailer.m3u8"
+               id = "txtm3u8"
+               onkeydown = "if (event.keyCode == 13)
+                            document.getElementById('btnPlay').click()"
+       />
+       <input type = "button"
+              id = "btnPlay"
+              value = "Play"
+              onclick = "playTheUrl(this, document.getElementById('txtm3u8').value);"
+       />
+
+       </span></p>
+       <p>Can my browser play HLS(audio/x-mpegurl) videos? <span>
+       <button onclick="supportType(event,'audio/x-mpegurl','xxx, yyy')" type="button">Test</button>
+       </span></p>
+       <p>Can my browser play HLS(application/vnd.apple.mpegurl) videos? <span>
+       <button onclick="supportType(event,'application/vnd.apple.mpegurl','xxx, yyy')" type="button">Test</button>
+       </span></p>
+       <p>Can my browser play HLS(application/x-mpegurl) videos? <span>
+       <button onclick="supportType(event,'application/x-mpegurl','xxx, yyy')" type="button">Test</button>
+       </span></p>
+    </body>
+    <script>
+    function playTheUrl(e, url) {
+      document.getElementById("hlsplayer").src = "bipbop_4x3_variant.m3u8";
+    }
+    function supportType(e,vidType,codType) {
+        var vid = document.createElement('video');
+        // Chrome on Android, can only pass mimetype without codec, and audio/x-mpegurl says no but can be played.....
+        isSupp = vid.canPlayType(vidType+';codecs="'+codType+'"');
+        //isSupp = vid.canPlayType(vidType);
+        if (isSupp == "") {
+            isSupp = "No";
+        }
+        e.target.parentNode.innerHTML = "Answer: " + isSupp;
+    }
+    </script>
+</html>
