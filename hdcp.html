@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Test Encrypted Media Extensions</title>
+</head>
+<body>
+<video id="v" controls></video>
+<script class="testbody" type="text/javascript">
+
+
+function createMediaKeysAndSet() {
+  var config = [{initDataTypes: ['webm'],
+  videoCapabilities: [{contentType: 'video/webm; codecs="vp9"'}]}]
+  return navigator.requestMediaKeySystemAccess("com.widevine.alpha", config)
+  .then(function (access) {
+    return access.createMediaKeys();
+  })
+  .then(function (mediaKeys) {
+    document.getElementById("v").setMediaKeys(mediaKeys);
+    return mediaKeys;
+  });
+}
+
+
+function test() {
+    createMediaKeysAndSet()
+      .then((m) => {
+        let video = document.getElementById("v");
+        return video.mediaKeys.getStatusForPolicy({minHdcpVersion: "hdcp-2.0"});
+      })
+      .then((mediaKeyStatus) => {
+        console.log("mediaKeyStatus = " + mediaKeyStatus);
+      });
+}
+
+test();
+
+</script>
+</body>
+</html>
