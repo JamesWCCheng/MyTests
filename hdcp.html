@@ -30,7 +30,8 @@ function test() {
       })
       .then((mediaKeyStatus) => {
         console.log("mediaKeyStatus = " + mediaKeyStatus);
-      });
+      })
+      .catch(reason => console.log("reject reason =" + reason));
 }
 
 test();
