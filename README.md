@@ -6,3 +6,5 @@
 <a href="https://jameswccheng.github.io/hlslocaltest/test_autoplay.html">Go!</a>
 ## Test HDCP Policy Status
 <a href="https://jameswccheng.github.io/hlslocaltest/hdcp.html">Go!</a>
+## Get User-Agent String
+<a href="https://jameswccheng.github.io/hlslocaltest/user-agent.html">Go!</a>
