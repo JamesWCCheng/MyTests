@@ -1,4 +1,4 @@
-# hlslocaltest
+# My Test Pages
 
 ## Test HLS with HTMLMediaElement preload="auto"
 <a href="https://jameswccheng.github.io/hlslocaltest/test.html">Go!</a>
