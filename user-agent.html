@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>User-Agent</title>
+</head>
+<body>
+<span id="key">general.useragent.override </span>
+<button id="copyKeyBtn" type="button">Copy</button>
+<br>
+<br>
+<span id="currentUA"></span>
+<button id="copyUABtn" type="button">Copy</button>
+
+<script class="testbody" type="text/javascript">
+  var clickingBtn;
+  var ua = navigator.userAgent;
+  document.getElementById("currentUA").innerHTML = ua;
+
+  var btnKeyCopy = document.getElementById("copyKeyBtn");
+  btnKeyCopy.addEventListener("click", function(event) {
+    // Copy it to the clipboard
+    clickingBtn = btnKeyCopy;
+    document.execCommand("copy");
+  });
+
+  var btnUACopy = document.getElementById("copyUABtn");
+    btnUACopy.addEventListener("click", function(event) {
+    // Copy it to the clipboard
+    clickingBtn = btnUACopy;
+    document.execCommand("copy");
+  });
+  document.addEventListener('copy', function(e){
+    if (clickingBtn.id == "copyKeyBtn") {
+      console.log("!!!" + e + document.getElementById('key').innerHTML);
+      e.clipboardData.setData('text/plain', document.getElementById('key').innerHTML);
+    }
+    if (clickingBtn.id == "copyUABtn") {
+      console.log("!!!" + e + document.getElementById('currentUA').innerHTML);
+      e.clipboardData.setData('text/plain', document.getElementById('currentUA').innerHTML);
+    }
+    e.preventDefault();
+  });
+</script>
+
+</body>
+</html>
